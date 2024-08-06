@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ls -a
+
 PORT=8080
 
 # Function to handle HTTP requests
@@ -22,6 +24,7 @@ handle_request() {
 
 # Start the HTTP server
 echo "Starting HTTP server on port $PORT..."
+python3 -m http.server 8080
 while :; do
     { echo -ne "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n$(handle_request)"; } | nc -l -p "$PORT" -q 1
 done
