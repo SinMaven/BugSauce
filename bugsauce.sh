@@ -29,6 +29,10 @@ echo "System Uptime:"
 uptime
 echo ""
 
+echo "Kernel Version:"
+uname -r
+echo ""
+
 echo "=== Network Information ==="
 echo "IP Address:"
 hostname -I
@@ -54,6 +58,10 @@ echo "DNS Server Information:"
 cat /etc/resolv.conf
 echo ""
 
+echo "Public IP Address:"
+curl -s ifconfig.me
+echo ""
+
 echo "=== Hardware Information ==="
 echo "Block Devices:"
 lsblk
@@ -65,4 +73,47 @@ echo ""
 
 echo "PCI Devices:"
 lspci
+echo ""
+
+echo "Sensors Information:"
+if command -v sensors &> /dev/null
+then
+    sensors
+else
+    echo "lm-sensors not installed."
+fi
+echo ""
+
+echo "=== User Information ==="
+echo "Current Users Logged In:"
+w
+echo ""
+
+echo "Last Logins:"
+last
+echo ""
+
+echo "User Information:"
+id
+echo ""
+
+echo "=== Security Information ==="
+echo "Open Files:"
+lsof
+echo ""
+
+echo "Running Processes:"
+ps aux
+echo ""
+
+echo "Installed Packages:"
+if command -v dpkg &> /dev/null
+then
+    dpkg -l
+elif command -v rpm &> /dev/null
+then
+    rpm -qa
+else
+    echo "Package manager not recognized."
+fi
 echo ""
