@@ -1,2 +1,2 @@
 # BugSauce
-<a href=javascript:alert()>XSS test</a>
+<a href=javascript:alert(1)>XSS test</a>
